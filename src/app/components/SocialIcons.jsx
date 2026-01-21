@@ -1,13 +1,31 @@
+"use client";
+
 import { Linkedin, Instagram } from "lucide-react";
+import XIcon from '@mui/icons-material/X';
 
 export default function SocialIcons() {
   return (
-    <div className="flex gap-5 text-white/60">
-      <span className="text-xl hover:opacity-100 hover:scale-110 transition cursor-pointer">
-        X
-      </span>
-      <Linkedin className="w-5 h-5 hover:opacity-100 hover:scale-110 transition cursor-pointer" />
-      <Instagram className="w-5 h-5 hover:opacity-100 hover:scale-110 transition cursor-pointer" />
+    <div className="flex gap-6 text-white/60">
+      <a
+        href="#"
+        className="hover:text-white transition hover:scale-110"
+      >
+        <Linkedin size={26} />
+      </a>
+
+      <a
+        href="#"
+        className="hover:text-white transition hover:scale-110"
+      >
+        <Instagram size={26} />
+      </a>
+
+      <a
+        href="#"
+        className="hover:text-white transition hover:scale-110"
+      >
+        <XIcon size={26} />
+      </a>
     </div>
   );
 }

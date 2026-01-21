@@ -30,7 +30,7 @@ export default function Navbar() {
             {/* LOGO */}
             <div className="w-12 h-12 flex items-center justify-center">
               <Image
-                src="/image/logo.svg"
+                src="/images/logo.svg"
                 alt="Logo"
                 width={48}
                 height={48}
@@ -49,6 +49,7 @@ export default function Navbar() {
                     hover:text-white
                     hover:bg-white/10
                     transition
+                    cursor-pointer
                   "
                 >
                   {item}
