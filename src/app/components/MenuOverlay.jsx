@@ -61,47 +61,48 @@ export default function MenuOverlay({ open, onClose }) {
             }}
             className="
               relative
-              w-[80vw] max-w-5xl h-[70vh]
+              w-[90vw] md:w-[80vw] max-w-5xl h-[85vh] md:h-[70vh]
               rounded-3xl
               bg-[#3D365C]/90
               border border-white/10
-              flex
+              flex flex-col md:flex-row
+              overflow-y-auto md:overflow-hidden
             "
           >
             {/* CLOSE */}
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 text-white text-2xl hover:rotate-90 transition"
+              className="absolute top-6 right-6 text-white text-2xl hover:rotate-90 transition z-50 focus:outline-none"
             >
               <X />
             </button>
 
            {/* LEFT NAV */}
-<div className="group flex flex-col justify-center gap-6 px-12">
-  {["Home", "About", "Blog", "Projects"].map((item) => (
-    <NavItem key={item} label={item} onClick={onClose} />
-  ))}
-</div>
+            <div className="flex flex-col justify-center gap-4 md:gap-6 px-8 md:px-12 py-12 md:py-0">
+              {["Home", "About", "Blog", "Projects"].map((item) => (
+                <NavItem key={item} label={item} onClick={onClose} />
+              ))}
+            </div>
 
             {/* CENTER LOGO */}
-<div className="w-1/3 flex items-center justify-center">
-  <Image
-    src="/images/logo.svg"
-    alt="Brand Logo"
-    width={200}
-    height={200}
-    priority
-    className="object-contain"
-  />
-</div>
+            <div className="w-full md:w-1/3 flex items-center justify-center p-8 md:p-0">
+              <Image
+                src="/images/logo.svg"
+                alt="Brand Logo"
+                width={200}
+                height={200}
+                priority
+                className="w-32 md:w-48 object-contain"
+              />
+            </div>
 
             {/* RIGHT INFO */}
-            <div className="w-1/3 flex flex-col items-center justify-center gap-16 py-12 px-12 text-white/70">
-              <div className="text-center space-y-3">
-                <p className="text-2xl font-semibold text-white">Studio Name</p>
-                <p className="text-lg">Berlin, Germany</p>
-                <p className="text-lg">+49 123 456 7890</p>
-                <p className="text-lg">hello@studio.com</p>
+            <div className="w-full md:w-1/3 flex flex-col items-center justify-center gap-8 md:gap-16 pb-12 md:pb-0 px-8 md:px-12 text-white/70">
+              <div className="text-center space-y-2 md:space-y-3">
+                <p className="text-xl md:text-2xl font-semibold text-white">Studio Name</p>
+                <p className="text-base md:text-lg">Berlin, Germany</p>
+                <p className="text-base md:text-lg">+49 123 456 7890</p>
+                <p className="text-base md:text-lg uppercase text-[var(--color-accent)] font-bold tracking-widest pt-2">hello@studio.com</p>
               </div>
 
               <SocialIcons />

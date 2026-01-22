@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Preloader from "./components/Preloader";
 import Hero from "./components/Hero";
+import AboutSection from "./components/AboutSection";
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
@@ -28,7 +29,10 @@ export default function Page() {
         {loading && <Preloader key="preloader" />}
       </AnimatePresence>
 
-      <Hero show={!loading} />
+      <main>
+        <Hero show={!loading} />
+        {!loading && <AboutSection />}
+      </main>
     </>
   );
 }
