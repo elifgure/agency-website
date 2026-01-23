@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import Preloader from "./components/Preloader";
-import Hero from "./components/Hero";
-import AboutSection from "./components/AboutSection";
+import Preloader from "../components/Preloader";
+import Hero from "../components/Hero";
+import AboutSection from "../components/AboutSection";
 
 export default function Page() {
   const [loading, setLoading] = useState(true);

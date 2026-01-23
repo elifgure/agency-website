@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section className="bg-black text-white py-32 px-6 md:px-12 lg:px-24 border-t border-white/5">
+    <section className="bg-black text-white pt-16 md:pt-32 pb-16 px-6 md:px-12 lg:px-24 border-t border-white/5">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         
         {/* LEFT – IDENTIFIER */}
@@ -36,7 +36,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eveniet aper
             className="flex flex-col md:flex-row items-center gap-12"
           >
             {/* PURPLE BUTTON */}
-            <button className="group relative flex items-center gap-4 bg-[var(--color-primary)] hover:bg-white text-white hover:text-black px-6 py-3 rounded-full transition-all duration-500 overflow-hidden border border-[var(--color-primary)]">
+            <button className="group relative flex items-center gap-4 bg-[var(--color-primary)] hover:bg-white text-white hover:text-black px-4 py-2 rounded-full transition-all duration-500 overflow-hidden border border-[var(--color-primary)]">
               <span className="text-[10px] font-bold tracking-widest uppercase relative z-10">
                 More about us
               </span>
@@ -44,9 +44,6 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eveniet aper
                 <ArrowUpRight className="w-4 h-4 text-white" />
               </div>
             </button>
-
-            {/* DECORATIVE DOT */}
-            <div className="hidden md:block w-1.5 h-1.5 bg-white h-2 rounded-full opacity-10" />
           </motion.div>
         </div>
 
