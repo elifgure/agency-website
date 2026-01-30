@@ -110,7 +110,8 @@ export default function Preloader() {
                 "0 0 20px rgba(201,87,146,0.65), 0 0 36px rgba(201,87,146,0.4)",
             }}
           >
-            {rounded}
+            <span className="mr-3 text-5xl">%</span>
+            <motion.span>{rounded}</motion.span>
           </motion.div>
         </div>
       </div>

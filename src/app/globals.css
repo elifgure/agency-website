@@ -12,3 +12,42 @@ body {
   color: white;
   overflow-x: hidden; 
 }
+
+
+/* Chrome, Edge ve Safari */
+::-webkit-scrollbar {
+  width: 8px; 
+}
+
+/* Scrollbar arka planı (track) */
+::-webkit-scrollbar-track {
+  background: #000000; 
+}
+
+/* Scrollbar tutacağı (thumb) */
+::-webkit-scrollbar-thumb {
+  background: #7c4585; 
+  border-radius: 100px; 
+  border: 2px solid #000000; 
+  transition: background 0.3s ease;
+}
+
+/* Hover efekti */
+::-webkit-scrollbar-thumb:hover {
+  background: #c95792; 
+}
+
+/* Firefox desteği */
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #7c4585 #000000;
+  }
+}
+
+::selection {
+  background-color: #7c4585;
+  color: #ffffff;
+}
+
+

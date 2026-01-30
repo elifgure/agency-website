@@ -47,13 +47,13 @@ const items = [
   },
 ];
 
-export default function Hero({ show }) {
+export default function Hero() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={show ? { opacity: 1 } : {}}
+      animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
       className="relative h-screen w-full bg-black text-white overflow-hidden flex flex-col md:flex-row"
     >
