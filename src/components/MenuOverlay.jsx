@@ -82,7 +82,7 @@ export default function MenuOverlay({ open, onClose }) {
             <div className="flex flex-col justify-center gap-4 md:gap-6 px-8 md:px-12 py-12 md:py-0">
               {[
                 { label: "Home", href: "/" },
-                { label: "Collections", href: "/collections" },
+                { label: "Projects", href: "/projects" },
                 { label: "About", href: "/about" },
                 { label: "Blog", href: "/blog" },
               ].map((item) => (

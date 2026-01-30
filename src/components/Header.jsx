@@ -65,7 +65,8 @@ export default function Navbar() {
 
             {/* RIGHT ACTIONS */}
             <div className="flex items-center gap-4 md:gap-8">
-              <button
+              <Link
+                href="/contact"
                 className="
                   group hidden sm:flex items-center gap-3
                   px-4 md:px-6 py-1.5 md:py-2 rounded-full
@@ -79,7 +80,7 @@ export default function Navbar() {
                 <ArrowUpRight
                   className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:text-black transition-opacity"
                 />
-              </button>
+              </Link>
 
               {/* MENU ICON */}
               <div 
