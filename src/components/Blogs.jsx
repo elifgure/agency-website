@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Play, Filter, Mail, ArrowRight, Heart, Share2, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Blogs = () => {
-  const [likedPosts, setLikedPosts] = useState({});
   const [activeHeroIndex, setActiveHeroIndex] = useState(0);
 
   const heroArtists = [
@@ -23,10 +22,6 @@ const Blogs = () => {
     { id: 7, tag: "PORTFOLYO", time: "9 DK", title: "Etkileyici Showreel Hazırlama", excerpt: "Kasting direktörlerinin dikkatini çekecek showreel ipuçları.", image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=600", likes: 198 },
     { id: 8, tag: "SAĞLIK", time: "5 DK", title: "Oyuncular İçin Ses Koruma", excerpt: "Ses tellerinizi korumak ve geliştirmek için günlük egzersizler.", image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?auto=format&fit=crop&q=80&w=600", likes: 167 }
   ];
-
-  const toggleLike = (id) => {
-    setLikedPosts(prev => ({ ...prev, [id]: !prev[id] }));
-  };
 
   return (
     <div className="bg-black min-h-screen text-white font-sans selection:bg-[#c95792] pt-24">
@@ -103,19 +98,10 @@ const Blogs = () => {
                     </div>
 
                     <div className="flex items-center justify-between pt-6 border-t border-white/5">
-                      <div className="flex items-center gap-6">
-                        <button 
-                          onClick={() => toggleLike(article.id)}
-                          className={`flex items-center gap-2 text-xs font-bold transition-colors ${likedPosts[article.id] ? 'text-[#7c4585]' : 'text-gray-500 hover:text-white'}`}
-                        >
-                          <Heart size={18} fill={likedPosts[article.id] ? "currentColor" : "none"} className={likedPosts[article.id] ? "animate-bounce" : ""} />
-                          {likedPosts[article.id] ? article.likes + 1 : article.likes}
-                        </button>
-                        <button className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-white transition-colors">
-                          <Share2 size={18} /> Paylaş
-                        </button>
-                      </div>
-                      <ArrowRight className="text-gray-700 group-hover:text-[#7c4585] group-hover:translate-x-2 transition-all" />
+                      <button className="flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white transition-colors group/btn">
+                         Tamamını Oku
+                         <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -5,7 +5,7 @@ import brands from "@/data/brands";
 
 export default function BrandMarquee() {
   return (
-    <section className="relative w-full overflow-hidden pb-8 md:pb-20 pt-10 -mt-6 md:-mt-10">
+    <section className="relative w-full overflow-hidden pb-8 md:pb-20 pt-10 mt-24 md:mt-32">
       {/* fade mask */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />

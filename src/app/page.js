@@ -10,25 +10,28 @@ import TalentShowcase from "@/components/TalentShowcase";
 import WhyUs from "@/components/WhyUs";
 
 export default function Page() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // sayfa ilk açılırken scroll KAPALI
-    document.body.style.overflow = "hidden";
+    const navigationEntries = performance.getEntriesByType("navigation");
+    const navigationType = navigationEntries[0]?.type;
 
-    const t = setTimeout(() => setLoading(false), 2800);
-    return () => clearTimeout(t);
+    if (navigationType === "navigate" || navigationType === "reload") {
+      setLoading(true);
+      document.body.style.overflow = "hidden";
+
+      const t = setTimeout(() => {
+        setLoading(false);
+        document.body.style.overflow = "auto";
+      }, 2800);
+
+      return () => clearTimeout(t);
+    }
   }, []);
 
   return (
     <>
-      <AnimatePresence
-        mode="wait"
-        onExitComplete={() => {
-          // Preloader TAMAMEN GİDİNCE scroll AÇ
-          document.body.style.overflow = "auto";
-        }}
-      >
+      <AnimatePresence mode="wait">
         {loading && <Preloader key="preloader" />}
       </AnimatePresence>
 
