@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import NavItem from "./NavItem";
 import SocialIcons from "./SocialIcons";
 import CursorGlow from "./CursorGlow";
@@ -79,8 +80,15 @@ export default function MenuOverlay({ open, onClose }) {
 
            {/* LEFT NAV */}
             <div className="flex flex-col justify-center gap-4 md:gap-6 px-8 md:px-12 py-12 md:py-0">
-              {["Home", "About", "Blog", "Projects"].map((item) => (
-                <NavItem key={item} label={item} onClick={onClose} />
+              {[
+                { label: "Home", href: "/" },
+                { label: "Collections", href: "/collections" },
+                { label: "About", href: "/about" },
+                { label: "Blog", href: "/blog" },
+              ].map((item) => (
+                <Link key={item.label} href={item.href} onClick={onClose}>
+                  <NavItem label={item.label} />
+                </Link>
               ))}
             </div>
 

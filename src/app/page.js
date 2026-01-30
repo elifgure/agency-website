@@ -5,6 +5,9 @@ import { AnimatePresence } from "framer-motion";
 import Preloader from "../components/Preloader";
 import Hero from "../components/Hero";
 import AboutSection from "../components/AboutSection";
+import BrandMarquee from "@/components/BrandMarquee";
+import TalentShowcase from "@/components/TalentShowcase";
+import WhyUs from "@/components/WhyUs";
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
@@ -31,7 +34,14 @@ export default function Page() {
 
       <main>
         <Hero show={!loading} />
-        {!loading && <AboutSection />}
+        {!loading && (
+          <>
+            <BrandMarquee />
+            <AboutSection />
+            <TalentShowcase />
+            <WhyUs />
+          </>
+        )}
       </main>
     </>
   );

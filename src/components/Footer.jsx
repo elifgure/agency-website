@@ -22,7 +22,7 @@ export default function Footer() {
         className="
           relative z-10
           max-w-6xl mx-auto
-          px-6 py-16
+          px-6 pt-8 pb-16
           grid grid-cols-1 md:grid-cols-3
           items-center
           gap-12
@@ -58,7 +58,7 @@ export default function Footer() {
       </div>
 
       {/* COPYRIGHT BAR */}
-      <div className="border-t border-white/5 py-6 text-center text-sm text-white/40">
+      <div className="border-t border-white/5 md:py-6 py-3 text-center text-sm text-white/40">
         © {new Date().getFullYear()} Studio Name. All rights reserved.
       </div>
     </footer>

@@ -5,13 +5,13 @@ import brands from "@/data/brands";
 
 export default function BrandMarquee() {
   return (
-    <section className="relative w-full overflow-hidden pb-8 md:pb-20 pt-8 -mt-4 md:-mt-8">
+    <section className="relative w-full overflow-hidden pb-8 md:pb-20 pt-10 -mt-6 md:-mt-10">
       {/* fade mask */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
 
       <motion.div
-        className="flex gap-2 items-center whitespace-nowrap"
+        className="flex gap-1.5 md:gap-2 items-center whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}
         transition={{
           repeat: Infinity,
@@ -31,8 +31,8 @@ export default function BrandMarquee() {
               className="
                 group
                 relative
-                w-36 h-36 md:w-44 md:h-44
-                rounded-[2.5rem]
+                w-24 h-24 md:w-44 md:h-44
+                rounded-[1.5rem] md:rounded-[2.5rem]
                 bg-transparent
                 border-2 border-[var(--color-primary)]/30
                 flex items-center justify-center

@@ -10,8 +10,7 @@ export default function AboutSection() {
         
         {/* LEFT – IDENTIFIER */}
         <div className="lg:col-span-5 flex items-center gap-3 pt-2">
-          <div className="w-2 h-2 rounded-full bg-[var(--color-primary)]" />
-          <span className="text-sm font-bold tracking-[0.3em] uppercase text-[var(--color-primary)] opacity-80">
+          <span className="text-3xl md:text-6xl font-bold uppercase italic text-[var(--color-primary)] opacity-80">
             WHO ARE WE
           </span>
         </div>

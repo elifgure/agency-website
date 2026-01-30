@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import MenuOverlay from "./MenuOverlay";
+import Link from "next/link";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -47,7 +48,7 @@ export default function Navbar() {
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className={`
@@ -57,7 +58,7 @@ export default function Navbar() {
                     `}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
