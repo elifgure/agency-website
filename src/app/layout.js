@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Navbar from "../components/Header";
 import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
@@ -8,6 +9,8 @@ import "./globals.css";
 
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
+  const isAdminPage = pathname?.startsWith("/admin");
 
   useEffect(() => {
     const alreadyShown = sessionStorage.getItem("preloaderShown");
@@ -37,9 +40,9 @@ export default function RootLayout({ children }) {
           <Preloader />
         ) : (
           <>
-            <Navbar />
+            {!isAdminPage && <Navbar />}
             {children}
-            <Footer />
+            {!isAdminPage && <Footer />}
           </>
         )}
       </body>

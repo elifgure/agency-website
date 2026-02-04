@@ -34,9 +34,9 @@ const Blogs = () => {
         
       </div>
 
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row lg:items-start">
         {/* Sol Taraf - Dinamik Hero */}
-        <section className="w-full lg:w-1/2 h-[70vh] lg:h-[calc(100vh-84px)] lg:sticky lg:top-[70px] overflow-hidden">
+        <section className="w-full lg:w-1/2 h-[80vh] lg:h-[calc(100vh-6rem)] lg:sticky lg:top-24 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div 
               key={activeHeroIndex}

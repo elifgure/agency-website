@@ -9,7 +9,7 @@ const Contact = () => {
     <div className="bg-black min-h-screen text-white selection:bg-[#7c4585] flex flex-col lg:flex-row">
       
       {/* SOL TARAF - GÖRSEL VE SLOGAN */}
-      <section className="relative w-full lg:w-1/2 h-[50vh] lg:h-screen overflow-hidden">
+      <section className="relative w-full lg:w-1/2 h-[100vh] lg:h-screen overflow-hidden">
         <img 
           src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=1200" 
           className="w-full h-full object-cover grayscale brightness-50"
@@ -74,30 +74,6 @@ const Contact = () => {
             </form>
           </motion.div>
         </div>
-
-        {/* ALT BİLGİLER - SAĞ */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="mt-20 flex flex-col md:flex-row md:items-end justify-between gap-12"
-        >
-          <div className="space-y-4">
-            <p className="text-xs font-bold text-gray-500 tracking-widest">ADDRESS</p>
-            <p className="text-sm font-black leading-relaxed">
-              Levent Loft No:12<br />
-              Beşiktaş / Istanbul, TR
-            </p>
-          </div>
-          <div className="space-y-4">
-            <p className="text-xs font-bold text-gray-500 tracking-widest">SOCIALS</p>
-            <div className="flex gap-6 text-[10px] font-black uppercase tracking-widest">
-              <a href="#" className="hover:text-[#7c4585] transition-colors">Instagram</a>
-              <a href="#" className="hover:text-[#7c4585] transition-colors">Twitter</a>
-              <a href="#" className="hover:text-[#7c4585] transition-colors">Linkedin</a>
-            </div>
-          </div>
-        </motion.div>
       </section>
     </div>
   );
