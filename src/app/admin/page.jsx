@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2, Plus, X, Image as ImageIcon } from "lucide-react";
+import { Trash2, Plus, X, Image as ImageIcon, Edit } from "lucide-react";
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,6 +11,7 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState("projects");
   const [items, setItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingId, setEditingId] = useState(null);
   
   // Form States
   const [formData, setFormData] = useState({});
@@ -77,19 +78,34 @@ export default function AdminPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`/api/${activeTab}`, {
-      method: "POST",
-      body: JSON.stringify(formData),
+    const url = editingId ? `/api/${activeTab}?id=${editingId}` : `/api/${activeTab}`;
+    const method = editingId ? "PUT" : "POST";
+
+    let submitData = { ...formData };
+    if (activeTab === "projects" && typeof submitData.reels === "string") {
+      submitData.reels = submitData.reels.split(",").map(item => item.trim()).filter(item => item !== "");
+    }
+
+    const res = await fetch(url, {
+      method,
+      body: JSON.stringify(submitData),
       headers: { "Content-Type": "application/json" },
     });
 
     if (res.ok) {
       setIsModalOpen(false);
       setFormData({});
+      setEditingId(null);
       fetchItems();
     } else {
       alert("Hata oluştu");
     }
+  };
+
+  const handleEdit = (item) => {
+    setFormData(item);
+    setEditingId(item._id);
+    setIsModalOpen(true);
   };
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-black text-white font-mono uppercase tracking-[0.3em]">Yükleniyor...</div>;
@@ -170,6 +186,7 @@ export default function AdminPage() {
           <button 
             onClick={() => {
               setFormData({});
+              setEditingId(null);
               setIsModalOpen(true);
             }}
             className="bg-purple-600 p-3 px-6 rounded-xl font-bold hover:bg-purple-700 transition-all flex items-center gap-2 shadow-lg shadow-purple-600/20 active:scale-95"
@@ -194,6 +211,12 @@ export default function AdminPage() {
                 </div>
                 <div className="flex gap-2 mt-4">
                   <button 
+                    onClick={() => handleEdit(item)}
+                    className="p-2 hover:bg-purple-500/20 text-gray-600 hover:text-purple-500 rounded-lg transition-all"
+                  >
+                    <Edit size={18} />
+                  </button>
+                  <button 
                     onClick={() => handleDelete(item._id)}
                     className="p-2 hover:bg-red-500/20 text-gray-600 hover:text-red-500 rounded-lg transition-all"
                   >
@@ -216,7 +239,7 @@ export default function AdminPage() {
         <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-6">
           <div className="bg-[#0a0a0a] border border-white/10 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl">
             <div className="p-8 border-b border-white/5 flex justify-between items-center">
-              <h2 className="text-2xl font-black tracking-tighter uppercase">YENİ {activeTab === "projects" ? "Proje" : "Blog"} SİSTEMİ</h2>
+              <h2 className="text-2xl font-black tracking-tighter uppercase">{editingId ? "DÜZENLE" : "YENİ"} {activeTab === "projects" ? "Proje" : "Blog"} SİSTEMİ</h2>
               <button onClick={() => setIsModalOpen(false)} className="text-gray-500 hover:text-white transition-colors">
                 <X size={24} />
               </button>
@@ -225,23 +248,25 @@ export default function AdminPage() {
             <form onSubmit={handleSubmit} className="p-8 grid grid-cols-2 gap-4">
               {activeTab === "projects" ? (
                 <>
-                  <input className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Marka Adı" required onChange={e => setFormData({...formData, brand: e.target.value})} />
-                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Kategori" required onChange={e => setFormData({...formData, category: e.target.value})} />
-                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Yıl" required onChange={e => setFormData({...formData, year: e.target.value})} />
-                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Kapak Görseli URL" required onChange={e => setFormData({...formData, cover: e.target.value})} />
-                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Video URL (Direct MP4)" onChange={e => setFormData({...formData, video: e.target.value})} />
-                  <textarea className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white h-32" placeholder="Proje Açıklaması" required onChange={e => setFormData({...formData, desc: e.target.value})} />
+                  <input className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Marka Adı" required value={formData.brand || ""} onChange={e => setFormData({...formData, brand: e.target.value})} />
+                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Kategori" required value={formData.category || ""} onChange={e => setFormData({...formData, category: e.target.value})} />
+                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Yıl" required value={formData.year || ""} onChange={e => setFormData({...formData, year: e.target.value})} />
+                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Müşteri (Client)" value={formData.client || ""} onChange={e => setFormData({...formData, client: e.target.value})} />
+                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Kapak Görseli URL" required value={formData.cover || ""} onChange={e => setFormData({...formData, cover: e.target.value})} />
+                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Video URL (Direct MP4)" value={formData.video || ""} onChange={e => setFormData({...formData, video: e.target.value})} />
+                  <input className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Reels URL'leri (Virgül ile ayırın)" value={Array.isArray(formData.reels) ? formData.reels.join(", ") : formData.reels || ""} onChange={e => setFormData({...formData, reels: e.target.value})} />
+                  <textarea className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white h-32" placeholder="Proje Açıklaması" required value={formData.desc || ""} onChange={e => setFormData({...formData, desc: e.target.value})} />
                 </>
               ) : (
                 <>
-                  <input className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Blog Başlığı" required onChange={e => setFormData({...formData, title: e.target.value})} />
-                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Kategori" required onChange={e => setFormData({...formData, category: e.target.value})} />
-                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Görsel URL" required onChange={e => setFormData({...formData, image: e.target.value})} />
-                  <textarea className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white h-32" placeholder="Blog İçeriği" required onChange={e => setFormData({...formData, content: e.target.value})} />
+                  <input className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Blog Başlığı" required value={formData.title || ""} onChange={e => setFormData({...formData, title: e.target.value})} />
+                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Kategori" required value={formData.category || ""} onChange={e => setFormData({...formData, category: e.target.value})} />
+                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Görsel URL" required value={formData.image || ""} onChange={e => setFormData({...formData, image: e.target.value})} />
+                  <textarea className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white h-32" placeholder="Blog İçeriği" required value={formData.content || ""} onChange={e => setFormData({...formData, content: e.target.value})} />
                 </>
               )}
               <div className="col-span-2 mt-4">
-                <button type="submit" className="w-full bg-purple-600 p-4 rounded-xl font-black shadow-lg shadow-purple-600/20 hover:bg-purple-700 transition-all uppercase tracking-widest">KAYDET VE YAYINLA</button>
+                <button type="submit" className="w-full bg-purple-600 p-4 rounded-xl font-black shadow-lg shadow-purple-600/20 hover:bg-purple-700 transition-all uppercase tracking-widest">{editingId ? "GÜNCELLE" : "KAYDET VE YAYINLA"}</button>
               </div>
             </form>
           </div>

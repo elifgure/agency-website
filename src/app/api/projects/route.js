@@ -15,6 +15,7 @@ export async function GET() {
   }
 }
 
+
 // Yeni proje ekle (Sadece Admin)
 export async function POST(req) {
   await connectDB();
@@ -32,6 +33,28 @@ export async function POST(req) {
     return NextResponse.json(newProject, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Proje eklenemedi" }, { status: 400 });
+  }
+}
+
+// Proje Güncelle
+export async function PUT(req) {
+  await connectDB();
+  
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  if (!token || !verifyToken(token)) {
+    return NextResponse.json({ error: "Yetkisiz erişim" }, { status: 401 });
+  }
+
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    const body = await req.json();
+    const updatedProject = await Project.findByIdAndUpdate(id, body, { new: true });
+    return NextResponse.json(updatedProject);
+  } catch (error) {
+    return NextResponse.json({ error: "Proje güncellenemedi" }, { status: 400 });
   }
 }
 

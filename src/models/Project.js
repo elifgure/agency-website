@@ -6,6 +6,7 @@ const ProjectSchema = new mongoose.Schema({
   year: { type: String, required: true },
   cover: { type: String, required: true },
   video: { type: String },
+  reels: [{ type: String }],
   desc: { type: String, required: true },
   client: { type: String },
 }, { timestamps: true });

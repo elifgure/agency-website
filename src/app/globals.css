@@ -45,6 +45,14 @@ body {
   }
 }
 
+/* Video Controls Cleanup */
+video::-webkit-media-controls-overflow-button {
+  display: none !important;
+}
+video::-webkit-media-controls-download-button {
+  display: none !important;
+}
+
 ::selection {
   background-color: #7c4585;
   color: #ffffff;
