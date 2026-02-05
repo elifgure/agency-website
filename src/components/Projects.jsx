@@ -108,12 +108,12 @@ const ProjectsPage = () => {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: 100, opacity: 0 }}
                     transition={{ duration: 0.6, ease: "circOut" }}
-                    className="absolute inset-0 p-8 flex flex-col md:flex-row gap-8 bg-black/95"
+                    className="absolute inset-0 p-4 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 bg-black/95 overflow-y-auto md:overflow-hidden custom-scrollbar"
                   >
-                    {/* Left Side: Video (Fit 10/16, No Scroll) */}
-                    <div className="flex-1 h-full flex items-center justify-center overflow-hidden py-4">
+                    {/* Left Side: Video (Fit 10/16) */}
+                    <div className="w-full md:flex-1 h-auto md:h-full flex items-center justify-center shrink-0 py-4">
                       {project.video ? (
-                        <div className="h-full aspect-[10.5/16] rounded-[2rem] overflow-hidden bg-white/5 border border-white/10 shadow-2xl relative shadow-purple-600/10 group/video">
+                        <div className="w-full md:h-full aspect-[10.5/16] max-h-[60vh] md:max-h-none rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-white/5 border border-white/10 shadow-2xl relative shadow-purple-600/10 group/video">
                           <video 
                             src={project.video} 
                             controls 
@@ -128,23 +128,23 @@ const ProjectsPage = () => {
                             <div 
                               className="absolute inset-0 flex items-center justify-center bg-black/20 pointer-events-none transition-opacity duration-300"
                             >
-                              <div className="w-24 h-24 rounded-full bg-purple-600/80 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-purple-600/40 border border-white/20">
-                                <Play fill="white" size={40} className="text-white ml-2" />
+                              <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-purple-600/80 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-purple-600/40 border border-white/20">
+                                <Play fill="white" size={30} className="text-white ml-1 md:ml-2 md:size-[40px]" />
                               </div>
                             </div>
                           )}
                         </div>
                       ) : (
-                        <div className="h-full aspect-[10.5/16] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
+                        <div className="w-full md:h-full aspect-[10.5/16] max-h-[60vh] md:max-h-none rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
                           <img src={project.cover} className="w-full h-full object-cover" alt={project.brand} />
                         </div>
                       )}
                     </div>
 
                     {/* Right Side: Info & Reels (Scrollable) */}
-                    <div className="w-full md:w-2/5 flex flex-col h-full overflow-y-auto pr-6 custom-scrollbar scroll-smooth">
-                      <div className="flex justify-between items-start mt-8 mb-8 shrink-0">
-                        <h2 className="text-4xl font-black tracking-tight italic uppercase">{project.brand}</h2>
+                    <div className="w-full md:w-2/5 flex flex-col h-auto md:h-full md:overflow-y-auto md:pr-6 custom-scrollbar scroll-smooth">
+                      <div className="flex justify-between items-start mt-2 md:mt-8 mb-8 shrink-0">
+                        <h2 className="text-3xl md:text-4xl font-black tracking-tight italic uppercase">{project.brand}</h2>
                         <button 
                           onClick={(e) => { 
                             e.stopPropagation(); 
