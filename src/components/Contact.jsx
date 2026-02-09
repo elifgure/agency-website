@@ -6,10 +6,10 @@ import { ArrowUpRight } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <div className="bg-black min-h-screen text-white selection:bg-[#7c4585] flex flex-col lg:flex-row">
+    <div className="bg-black min-h-screen text-white selection:bg-[#7c4585] flex flex-col lg:flex-row pt-[72px] items-start relative">
       
       {/* SOL TARAF - GÖRSEL VE SLOGAN */}
-      <section className="relative w-full lg:w-1/2 h-[100vh] lg:h-screen overflow-hidden">
+      <section className="w-full lg:w-1/2 lg:sticky lg:top-[72px] lg:h-[calc(100vh-72px)] h-[60vh] relative overflow-hidden">
         <img 
           src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=1200" 
           className="w-full h-full object-cover grayscale brightness-50"
@@ -40,14 +40,14 @@ const Contact = () => {
       </section>
 
       {/* SAĞ TARAF - FORM VE İLETİŞİM BİLGİLERİ */}
-      <section className="w-full lg:w-1/2 bg-[#0a0a0a] flex flex-col justify-between p-8 md:p-24">
+      <section className="w-full lg:w-1/2 bg-[#0a0a0a] flex flex-col justify-between pt-6 md:pt-20 px-8 md:px-24 pb-8 md:pb-24">
         <div className="max-w-md w-full mx-auto lg:mx-0">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h2 className="text-xs font-black tracking-[0.5em] text-[#7c4585] uppercase mb-16">Get In Touch</h2>
+            <h2 className="text-xs font-black tracking-[0.5em] text-[#7c4585] uppercase mb-10">Get In Touch</h2>
             
             <form className="space-y-12">
               <div className="group relative">
