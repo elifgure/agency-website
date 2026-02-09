@@ -74,7 +74,7 @@ const Blogs = () => {
       <div className="flex flex-col lg:flex-row pt-[72px] items-start relative min-h-screen">
         
         {/* Sol Taraf - Sticky Hero Section */}
-        <div className="w-full lg:w-1/2 lg:sticky lg:top-[72px] lg:h-[calc(100vh-72px)] h-[60vh] overflow-hidden">
+        <div className="w-full lg:w-1/2 lg:sticky lg:top-[72px] lg:h-[calc(100vh-72px)] h-[50vh] md:h-[60vh] overflow-hidden relative">
           <AnimatePresence>
             <motion.div 
               key={activeHeroIndex}

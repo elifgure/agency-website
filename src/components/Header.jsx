@@ -15,7 +15,6 @@ export default function Navbar() {
   const navItems = [
     { name: "HOME", href: "/" },
     { name: "PROJECTS", href: "/projects" },
-    { name: "ABOUT", href: "/about" },
     { name: "BLOG", href: "/blog" },
   ];
 
@@ -27,11 +26,11 @@ export default function Navbar() {
         transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
         className="fixed top-0 left-0 w-full z-[60] bg-black/20 backdrop-blur-md border-b border-white/5"
       >
-        <div className="w-full px-6 md:px-12 py-4 md:py-5">
+        <div className="w-full px-4 md:px-12 py-4 md:py-5">
           <div className="flex items-center justify-between">
             {/* LOGO AREA */}
-            <div className="flex items-center gap-4 md:gap-8">
-              <a href="/" className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center cursor-pointer transition-transform hover:scale-110">
+            <div className="flex items-center gap-2 md:gap-8">
+              <a href="/" className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center cursor-pointer transition-transform hover:scale-110">
                 <Image
                   src="/images/logo.svg"
                   alt="Logo"
@@ -44,7 +43,7 @@ export default function Navbar() {
             </div>
 
             {/* CENTER MENU */}
-            <div className="hidden md:flex items-center gap-10">
+            <div className="flex items-center gap-2.5 sm:gap-6 md:gap-10">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
@@ -52,7 +51,7 @@ export default function Navbar() {
                     key={item.name}
                     href={item.href}
                     className={`
-                      text-[10px] font-bold tracking-[0.4em] transition-all duration-300
+                      text-[7px] sm:text-[8px] md:text-[10px] font-bold tracking-[0.1em] sm:tracking-[0.2em] md:tracking-[0.4em] transition-all duration-300
                       ${isActive ? 'text-[var(--color-primary)]' : 'text-white/40 hover:text-[var(--color-primary)]'}
                       cursor-pointer
                     `}
@@ -64,21 +63,21 @@ export default function Navbar() {
             </div>
 
             {/* RIGHT ACTIONS */}
-            <div className="flex items-center gap-4 md:gap-8">
+            <div className="flex items-center gap-3 md:gap-8">
               <Link
                 href="/contact"
                 className="
-                  group hidden sm:flex items-center gap-3
-                  px-4 md:px-6 py-1.5 md:py-2 rounded-full
+                  group flex items-center gap-1.5 sm:gap-3
+                  px-2.5 sm:px-4 md:px-6 py-1.5 md:py-2 rounded-full
                   bg-[var(--color-primary)]
                   border border-[var(--color-primary)]
-                  text-white text-[9px] md:text-[10px] font-bold tracking-[0.3em]
+                  text-[7px] sm:text-[9px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.3em]
                   hover:bg-white hover:border-white hover:text-black transition-all duration-500
                 "
               >
                 CONTACT
                 <ArrowUpRight
-                  className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:text-black transition-opacity"
+                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-60 group-hover:opacity-100 group-hover:text-black transition-opacity"
                 />
               </Link>
 
@@ -87,8 +86,8 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(true)}
                 className="group cursor-pointer flex flex-col gap-1 md:gap-1.5 items-end"
               >
-                <div className="w-5 md:w-6 h-[1px] bg-[var(--color-primary)] group-hover:w-8 transition-all duration-300" />
-                <div className="w-3 md:w-4 h-[1px] bg-[var(--color-primary)] group-hover:w-8 transition-all duration-300" />
+                <div className="w-4 md:w-6 h-[1px] bg-[var(--color-primary)] group-hover:w-8 transition-all duration-300" />
+                <div className="w-2.5 md:w-4 h-[1px] bg-[var(--color-primary)] group-hover:w-8 transition-all duration-300" />
               </div>
             </div>
           </div>
