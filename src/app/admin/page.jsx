@@ -236,16 +236,16 @@ export default function AdminPage() {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-6">
-          <div className="bg-[#0a0a0a] border border-white/10 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl">
-            <div className="p-8 border-b border-white/5 flex justify-between items-center">
-              <h2 className="text-2xl font-black tracking-tighter uppercase">{editingId ? "DÜZENLE" : "YENİ"} {activeTab === "projects" ? "Proje" : "Blog"} SİSTEMİ</h2>
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+          <div className="bg-[#0a0a0a] border border-white/10 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            <div className="p-6 border-b border-white/5 flex justify-between items-center shrink-0">
+              <h2 className="text-xl font-black tracking-tighter uppercase">{editingId ? "DÜZENLE" : "YENİ"} {activeTab === "projects" ? "Proje" : "Blog"} SİSTEMİ</h2>
               <button onClick={() => setIsModalOpen(false)} className="text-gray-500 hover:text-white transition-colors">
                 <X size={24} />
               </button>
             </div>
             
-            <form onSubmit={handleSubmit} className="p-8 grid grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="p-6 grid grid-cols-2 gap-4 overflow-y-auto">
               {activeTab === "projects" ? (
                 <>
                   <input className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Marka Adı" required value={formData.brand || ""} onChange={e => setFormData({...formData, brand: e.target.value})} />
@@ -253,7 +253,7 @@ export default function AdminPage() {
                   <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Yıl" required value={formData.year || ""} onChange={e => setFormData({...formData, year: e.target.value})} />
                   <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Müşteri (Client)" value={formData.client || ""} onChange={e => setFormData({...formData, client: e.target.value})} />
                   <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Kapak Görseli URL" required value={formData.cover || ""} onChange={e => setFormData({...formData, cover: e.target.value})} />
-                  <input className="p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Video URL (Direct MP4)" value={formData.video || ""} onChange={e => setFormData({...formData, video: e.target.value})} />
+                  <input className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Video URL (Direct MP4)" value={formData.video || ""} onChange={e => setFormData({...formData, video: e.target.value})} />
                   <input className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white" placeholder="Reels URL'leri (Virgül ile ayırın)" value={Array.isArray(formData.reels) ? formData.reels.join(", ") : formData.reels || ""} onChange={e => setFormData({...formData, reels: e.target.value})} />
                   <textarea className="col-span-2 p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-600 text-white h-32" placeholder="Proje Açıklaması" required value={formData.desc || ""} onChange={e => setFormData({...formData, desc: e.target.value})} />
                 </>
